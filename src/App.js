@@ -14,9 +14,10 @@ function App() {
   const [appointments, setAppointments] = useState([]);
 
   const ROUTES = {
-    CONTACTS: "/contacts",
-    APPOINTMENTS: "/appointments",
-  };
+		CONTACTS: "/contacts",
+		APPOINTMENTS: "/appointments",
+		HOME: "/",
+	};
 
   /*
   Implement functions to add data to
@@ -43,29 +44,39 @@ function App() {
   }
 
   return (
-    <>
-      <nav>
-        <NavLink to={ROUTES.CONTACTS} activeClassName="active">
-          Contactse
-        </NavLink>
-        <NavLink to={ROUTES.APPOINTMENTS} activeClassName="active">
-          Appointments
-        </NavLink>
-      </nav>
-      <main>
-        <Switch>
-          <Route path={ROUTES.CONTACTS}>
-            {/* Add props to ContactsPage */}
-            <ContactsPage contacts={contacts} addContact={addContact}/>
+		<>
+			<nav>
+				<NavLink to={ROUTES.HOME} exact activeClassName="active">
+					Home
+				</NavLink>
+				<NavLink to={ROUTES.CONTACTS} activeClassName="active">
+					Contacts
+				</NavLink>
+				<NavLink to={ROUTES.APPOINTMENTS} activeClassName="active">
+					Appointments
+				</NavLink>
+			</nav>
+			<main>
+				<Switch>
+          <Route exact path={ROUTES.HOME}>
+            <h1>Home Page</h1>
           </Route>
-          <Route path={ROUTES.APPOINTMENTS}>
-            {/* Add props to AppointmentsPage */}
-            <AppointmentsPage appointments={appointments} contacts={contacts} addAppointment={addAppointment}/>
-          </Route>
-        </Switch>
-      </main>
-    </>
-  );
+					<Route path={ROUTES.CONTACTS}>
+						{/* Add props to ContactsPage */}
+						<ContactsPage contacts={contacts} addContact={addContact} />
+					</Route>
+					<Route path={ROUTES.APPOINTMENTS}>
+						{/* Add props to AppointmentsPage */}
+						<AppointmentsPage
+							appointments={appointments}
+							contacts={contacts}
+							addAppointment={addAppointment}
+						/>
+					</Route>
+				</Switch>
+			</main>
+		</>
+	);
 }
 
 export default App;

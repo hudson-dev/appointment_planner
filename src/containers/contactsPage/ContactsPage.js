@@ -20,7 +20,7 @@ export const ContactsPage = ({ contacts, addContact }) => {
     */
 		e.preventDefault();
 
-		if (duplicate == false) {
+		if (duplicate === false) {
 			addContact(name, phone, email);
 			setName("");
 			setPhone("");
